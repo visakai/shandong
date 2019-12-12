@@ -9,7 +9,7 @@ def index(request):
     return render(request, "index.html")
 
 def sound(request):
-    return render(request, "index.html")
+    return "Dummy response"
     
 def db(request):
 
