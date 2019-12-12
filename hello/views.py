@@ -9,8 +9,8 @@ def index(request):
     return render(request, "index.html")
 
 def sound(request):
-    return "Dummy response"
-    
+    return HttpResponse('SD respones')
+
 def db(request):
 
     greeting = Greeting()
