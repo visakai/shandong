@@ -8,7 +8,9 @@ def index(request):
     # return HttpResponse('Hello from Python!')
     return render(request, "index.html")
 
-
+def sound(request):
+    return render(request, "index.html")
+    
 def db(request):
 
     greeting = Greeting()
