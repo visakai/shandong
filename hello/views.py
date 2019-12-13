@@ -11,7 +11,7 @@ def index(request):
 
 def sound(request):
     print('request={}'.format(request))
-    m = request.msg
+    m = request.GET.get('msg', '')
     print('m={}'.format(m))
     url = "https://ttsmp3.com/makemp3.php"
     myobj = {'lang': 'Zhiyu', 'source':'ttsmp3', 'msg':'hahaha'}
