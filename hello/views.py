@@ -14,7 +14,7 @@ def sound(request):
     m = request.GET.get('msg', '')
     print('m={}'.format(m))
     url = "https://ttsmp3.com/makemp3.php"
-    myobj = {'lang': 'Zhiyu', 'source':'ttsmp3', 'msg':'hahaha'}
+    myobj = {'lang': 'Zhiyu', 'source':'ttsmp3', 'msg':m}
     x = requests.post(url, data = myobj, headers = {"Referer": "https://ttsmp3.com/"})
     print(x.status_code)
     print(x.text)
