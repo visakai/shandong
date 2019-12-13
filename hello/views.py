@@ -9,8 +9,10 @@ def index(request):
     # return HttpResponse('Hello from Python!')
     return render(request, "index.html")
 
-def sound(input):
-    print('input={}'.format(input))
+def sound(request):
+    print('request={}'.format(request))
+    m = request.msg
+    print('m={}'.format(m))
     url = "https://ttsmp3.com/makemp3.php"
     myobj = {'lang': 'Zhiyu', 'source':'ttsmp3', 'msg':'hahaha'}
     x = requests.post(url, data = myobj, headers = {"Referer": "https://ttsmp3.com/"})
