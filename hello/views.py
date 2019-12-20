@@ -16,9 +16,9 @@ def sound(request):
     words = m.split(',')
     sentense = ''
     for word in words:
-        if word is '2':
+        if word is '0':
             print('converting non-hanzi to pause')
-            sentense += "<break time='2s'/>"
+            sentense += "<break time='0.5s'/>"
         else:
             sentense += "<phoneme alphabet='x-amazon-pinyin' ph='{}'></phoneme>".format(word)
     print('sentense={}'.format(sentense))
