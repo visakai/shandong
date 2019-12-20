@@ -13,8 +13,18 @@ def sound(request):
     print('request={}'.format(request))
     m = request.GET.get('msg', '')
     print('m={}'.format(m))
+    words = m.split(',')
+    sentense = ''
+    for word in words:
+        if word is '2':
+            print('converting non-hanzi to pause')
+            sentense += "<break time='2s'/>"
+        else:
+            sentense += "<phoneme alphabet='x-amazon-pinyin' ph='{}'></phoneme>".format(word)
+    print('sentense={}'.format(sentense))
+
     url = "https://ttsmp3.com/makemp3.php"
-    myobj = {'lang': 'Zhiyu', 'source':'ttsmp3', 'msg':m}
+    myobj = {'lang': 'Zhiyu', 'source':'ttsmp3', 'msg':sentense}
     x = requests.post(url, data = myobj, headers = {"Referer": "https://ttsmp3.com/"})
     print(x.status_code)
     print(x.text)
