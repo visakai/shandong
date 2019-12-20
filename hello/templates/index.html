@@ -23,7 +23,7 @@
       text-align: center;
     }
 
-    #audio_box {
+    #audio_box, .warning {
       display: none;
     }
   </style>
@@ -69,15 +69,24 @@
     console.log('message=' + message);
     $.get('https://shandonghua.herokuapp.com/sound?msg=' + message, function(data, status){
       console.log('status=' + status);
+      console.log('data=' + data);
 
-      var mp3_url = "https://ttsmp3.com/created_mp3/" + data;
-      console.log('mp3 created = ' + mp3_url);
+      if (data == 'None') {
+        $('.warning').show();
+        $('#audio_box').hide();
 
-      $("#mp3_source").attr("src", mp3_url);
+      } else{
+        $('.warning').hide();
+        var mp3_url = "https://ttsmp3.com/created_mp3/" + data;
+        console.log('mp3 created = ' + mp3_url);
 
-      $('#audio_box')[0].load();
-      $('#audio_box').show();
-      $('#audio_box')[0].play();
+        $("#mp3_source").attr("src", mp3_url);
+
+        $('#audio_box')[0].load();
+        $('#audio_box').show();
+        $('#audio_box')[0].play();
+
+      }
 
     });
   }
@@ -85,7 +94,8 @@
   $(document).ready(function(){
 
     $("button").click(function(){
-      $("p").hide();
+      $('.warning').hide();
+      $('#audio_box').hide();
       var text = $('textarea#userinput').val();
       var url = `https://helloacm.com/api/pinyin/?cached&s=${text}&t=1`
       $.get(url, function(data, status){
@@ -112,6 +122,7 @@
       <source id="mp3_source" src=""/>
     </audio>
   </div>
+  <div class="center warning"> 已达今日字数限制！ </div>
 
 
 

@@ -29,9 +29,12 @@ def sound(request):
     print(x.status_code)
     print(x.text)
     mp3 = x.json().get('MP3')
-    response = HttpResponse(mp3)
-    response["Access-Control-Allow-Origin"] = "*"
-    return response
+    if mp3 is None:
+        return HttpResponse(status=500)
+    else:
+        response = HttpResponse(mp3)
+        response["Access-Control-Allow-Origin"] = "*"
+        return response
 
 def db(request):
 
